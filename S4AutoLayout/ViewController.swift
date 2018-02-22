@@ -8,6 +8,10 @@
 
 import UIKit
 
+extension UIColor {
+    static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
+}
+
 class ViewController: UIViewController {
 
     let imageView: UIImageView = {
@@ -38,10 +42,31 @@ class ViewController: UIViewController {
     //apply correct encapsulation principles. i.e. making private classes so that outside classes cannot interact with what's inside
     private let previousButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Prev", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitle("PREV", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    private let nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("NEXT", for: .normal)
+//        let pinkColor = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
+        button.setTitleColor(.mainPink, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let pageControl: UIPageControl = {
+        let pc = UIPageControl()
+        pc.currentPage = 0
+        pc.numberOfPages = 4
+//        let pinkColor = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
+        pc.currentPageIndicatorTintColor = .mainPink
+        pc.pageIndicatorTintColor = .gray
+        return pc
     }()
     
     override func viewDidLoad() {
@@ -49,22 +74,38 @@ class ViewController: UIViewController {
 
         view.addSubview(descriptionView)
         setupAutolayout()
-        setupAutoControls()
+        setupBottomControls()
        
     }
     
-    fileprivate func setupAutoControls(){
-        view.addSubview(previousButton)
-        previousButton.backgroundColor = .red
+    fileprivate func setupBottomControls(){
+//        previousButton.backgroundColor = .red
+        
+//        let yellowView = UIView()
+//        yellowView.backgroundColor = .yellow
+        
+//        let middleView = UIView()
+//        middleView.backgroundColor = .green
+        
+//        let blueView = UIView()
+//        blueView.backgroundColor = .blue
+        
+        let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton,pageControl,nextButton])
+        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomControlsStackView.distribution = .fillEqually
+
+//        view.addSubview(previousButton)
+        view.addSubview(bottomControlsStackView)
+        
         
         // Use this as alternative to setting isActive = true for each constraint
         // use safeAreaLayoutGuide's topAnchor for iphone X to avoid top bar area
         // Next, place previous Button at the bottom of screen
         NSLayoutConstraint.activate([
-            previousButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            previousButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            previousButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            previousButton.heightAnchor.constraint(equalToConstant: 50)
+            bottomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bottomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
             
             ])
         
