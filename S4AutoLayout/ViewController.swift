@@ -35,13 +35,41 @@ class ViewController: UIViewController {
         return dv
     }()
     
+    //apply correct encapsulation principles. i.e. making private classes so that outside classes cannot interact with what's inside
+    private let previousButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Prev", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addSubview(descriptionView)
         setupAutolayout()
-        
+        setupAutoControls()
        
+    }
+    
+    fileprivate func setupAutoControls(){
+        view.addSubview(previousButton)
+        previousButton.backgroundColor = .red
+        
+        // Use this as alternative to setting isActive = true for each constraint
+        // use safeAreaLayoutGuide's topAnchor for iphone X to avoid top bar area
+        // Next, place previous Button at the bottom of screen
+        NSLayoutConstraint.activate([
+            previousButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            previousButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            previousButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            previousButton.heightAnchor.constraint(equalToConstant: 50)
+            
+            ])
+        
+        
+        
     }
 
     private func setupAutolayout(){
