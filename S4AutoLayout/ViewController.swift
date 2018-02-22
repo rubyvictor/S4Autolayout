@@ -62,8 +62,8 @@ class ViewController: UIViewController {
         // Next, place previous Button at the bottom of screen
         NSLayoutConstraint.activate([
             previousButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            previousButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            previousButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            previousButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            previousButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             previousButton.heightAnchor.constraint(equalToConstant: 50)
             
             ])
