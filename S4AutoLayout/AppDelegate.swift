@@ -16,6 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Code the app instead of storyboard
+        window = UIWindow()
+        window?.makeKeyAndVisible()
+        
+        // step 1: setup random VC and make rootVC
+//        let randomViewController = UIViewController()
+//        randomViewController.view.backgroundColor = .green
+//        window?.rootViewController = randomViewController
+        
+        // correct step: SwipingController as the RootViewController with layout for grid-like ui
+        // set scroll direction to horizontal for swiping effect
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let swipingController = SwipingController(collectionViewLayout: layout)
+        
+        window?.rootViewController = swipingController
+        
         return true
     }
 
