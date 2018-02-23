@@ -10,7 +10,20 @@ import UIKit
 
 class PageCell: UICollectionViewCell {
     
-    let imageView: UIImageView = {
+    // separate view from controller by setting the page model here:
+    var page: Page? {
+        didSet {
+            
+            guard let imageNames = page?.imageName else { return }
+            imageView.image = UIImage(named: imageNames)
+            print(imageNames)
+            let headerTexts = page?.headerText
+            descriptionView.text = headerTexts
+            print(headerTexts ?? "")
+        }
+    }
+    
+    private let imageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "bear_first"))
         iv.contentMode = .scaleAspectFit
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -18,7 +31,7 @@ class PageCell: UICollectionViewCell {
         return iv
     }()
     
-    let descriptionView: UITextView = {
+    private let descriptionView: UITextView = {
         let dv = UITextView()
         
         let attributedText = NSMutableAttributedString(string: "Another awesome way of adding text via autolayout", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 24)])

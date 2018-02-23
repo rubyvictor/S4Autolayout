@@ -52,9 +52,11 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! PageCell
 
         let page = pages[indexPath.item]
-        cell.imageView.image = UIImage(named: page.imageName)
-        cell.descriptionView.text = page.headerText
+        cell.page = page
         
+//        cell.imageView.image = UIImage(named: page.imageName)
+//        cell.descriptionView.text = page.headerText
+//
 //        let imageName = imageNames[indexPath.item]
 //        cell.imageView.image = UIImage(named: imageName)
 //        let headerString = headerStrings[indexPath.item]
