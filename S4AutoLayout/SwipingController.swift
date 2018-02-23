@@ -8,12 +8,21 @@
 
 import UIKit
 
+
+
+
 class SwipingController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private var cellId = "cellId"
     
-    let imageNames = ["bear_first","heart_second","leaf_third"]
-    let headerStrings = ["Another awesome way of adding text via autolayout","Hey Join us here!","Awesome! You won't regret signing up"]
+    let pages = [Page(imageName: "bear_first", headerText: "Another awesome way of adding text via autolayout"),
+                 Page(imageName: "heart_second", headerText: "Hey Join us here!"),
+                 Page(imageName: "leaf_third", headerText: "Awesome! You won't regret signing up")
+                 ]
+    
+    
+//    let imageNames = ["bear_first","heart_second","leaf_third"]
+//    let headerStrings = ["Another awesome way of adding text via autolayout","Hey Join us here!","Awesome! You won't regret signing up"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +34,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageNames.count
+        return pages.count
     }
     
     // set size of each cell to the whole view frame
@@ -41,11 +50,15 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! PageCell
+
+        let page = pages[indexPath.item]
+        cell.imageView.image = UIImage(named: page.imageName)
+        cell.descriptionView.text = page.headerText
         
-        let imageName = imageNames[indexPath.item]
-        cell.imageView.image = UIImage(named: imageName)
-        let headerString = headerStrings[indexPath.item]
-        cell.descriptionView.text = headerString
+//        let imageName = imageNames[indexPath.item]
+//        cell.imageView.image = UIImage(named: imageName)
+//        let headerString = headerStrings[indexPath.item]
+//        cell.descriptionView.text = headerString
         
         // To see more clearly, set first cell in indexPath to different color from the second cell
 //        cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
