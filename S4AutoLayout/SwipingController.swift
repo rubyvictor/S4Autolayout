@@ -31,9 +31,15 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
     
+    // set vertical spacing to enable snap effect when swiping
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
-        cell.backgroundColor = .red
+        // To see more clearly, set first cell in indexPath to different color from the second cell
+        cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
         return cell
     }
     
