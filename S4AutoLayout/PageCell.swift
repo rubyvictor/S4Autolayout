@@ -14,12 +14,17 @@ class PageCell: UICollectionViewCell {
     var page: Page? {
         didSet {
             
-            guard let imageNames = page?.imageName else { return }
-            imageView.image = UIImage(named: imageNames)
-            print(imageNames)
-            let headerTexts = page?.headerText
-            descriptionView.text = headerTexts
-            print(headerTexts ?? "")
+            guard let unwrappedPage = page else { return }
+            imageView.image = UIImage(named: unwrappedPage.imageName)
+            
+//            descriptionView.text = unwrappedPage.headerText
+            
+            let attributedText = NSMutableAttributedString(string: unwrappedPage.headerText, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 24)])
+            attributedText.append(NSMutableAttributedString(string: "\n\n\n\(unwrappedPage.bodyText)", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16),NSAttributedStringKey.foregroundColor:UIColor.gray]))
+            
+            descriptionView.attributedText = attributedText
+            descriptionView.textAlignment = .center
+            
         }
     }
     

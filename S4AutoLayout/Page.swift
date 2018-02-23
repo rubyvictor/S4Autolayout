@@ -11,5 +11,6 @@ import UIKit
 struct Page {
     var imageName: String
     var headerText: String
+    var bodyText: String
 }
 

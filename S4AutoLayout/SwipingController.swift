@@ -15,9 +15,9 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     
     private var cellId = "cellId"
     
-    let pages = [Page(imageName: "bear_first", headerText: "Another awesome way of adding text via autolayout"),
-                 Page(imageName: "heart_second", headerText: "Hey Join us here!"),
-                 Page(imageName: "leaf_third", headerText: "Awesome! You won't regret signing up")
+    let pages = [Page(imageName: "bear_first", headerText: "Another awesome way of adding text via autolayout", bodyText: "Aren't we having loads ot awesome Swift 4 autolayout fun thanks to Brian sensei!!!"),
+                 Page(imageName: "heart_second", headerText: "Hey Join us here!", bodyText: "Awesome man - thanks to Brian sensei!!!"),
+                 Page(imageName: "leaf_third", headerText: "Awesome! You won't regret signing up", bodyText: "Unbelievable value of coding - thanks brian")
                  ]
     
     
