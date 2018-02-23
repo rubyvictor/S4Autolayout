@@ -16,8 +16,10 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView?.backgroundColor = .green
+        collectionView?.backgroundColor = .white
         collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        
+        collectionView?.isPagingEnabled = true
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
