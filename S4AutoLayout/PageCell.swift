@@ -4,7 +4,7 @@
 //
 //  Created by Victor Lee on 23/2/18.
 //  Copyright © 2018 VictorLee. All rights reserved.
-//
+//  View to coordinate sending of page objects
 
 import UIKit
 
